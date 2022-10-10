@@ -4,7 +4,8 @@ import Main from "./layouts/Main";
 import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import Orders from "./components/Orders/Orders";
-import Inventory from './components/Inventory/Inventory';
+import Inventory from "./components/Inventory/Inventory";
+import { productsAndCartLoader } from './loaders/productsAndCartLoader';
 
 function App() {
   const router = createBrowserRouter([
@@ -13,22 +14,24 @@ function App() {
       element: <Main></Main>,
       children: [
         {
-          path: "/shop",
+          path: "/",
+          loader: productsAndCartLoader,
           element: <Shop></Shop>,
         },
         {
           path: "/orders",
+          loader: productsAndCartLoader,
           element: <Orders></Orders>,
         },
         {
           path: "/inventory",
           element: <Inventory></Inventory>,
         },
+        {
+          path: "about",
+          element: <About></About>,
+        },
       ],
-    },
-    {
-      path: "about",
-      element: <About></About>,
     },
   ]);
   return (
